@@ -49,7 +49,7 @@ public class ControllerMain {
 
     @GetMapping("/list")
     public List<Product> listProducts(){
-        log.info("EXECUTE ROUTE getAlls");
+        log.info("EXECUTE ROUTE List");
         return productService.listProducts();
     }
 
