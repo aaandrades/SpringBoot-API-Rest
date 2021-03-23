@@ -27,9 +27,10 @@ public class ProductServiceImpl implements ProductService{
     @Override
     // If operation is Success, create a commit and continue, otherwise, do Rollback and end.
     @Transactional
-    public void save(Product product) {
+    public Product save(Product product) {
         // Save a product
         productDao.save(product);
+        return product;
     }
 
     @Override

@@ -12,7 +12,7 @@ public interface ProductService {
 
     public List<Product> listProducts();
 
-    public void save(Product product);
+    public Product save(Product product);
 
     public void delete(Product product);
 

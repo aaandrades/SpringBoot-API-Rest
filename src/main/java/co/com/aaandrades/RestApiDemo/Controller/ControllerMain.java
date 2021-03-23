@@ -52,4 +52,9 @@ public class ControllerMain {
         log.info("EXECUTE ROUTE getAlls");
         return productService.listProducts();
     }
+
+    @PostMapping("/add")
+    Product newProduct(@RequestBody Product newProduct) {
+        return productService.save(newProduct);
+    }
 }
