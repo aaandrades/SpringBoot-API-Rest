@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring App</title>
+</head>
+<body>
+<h1>Hello World</h1>
+<a th:href="@{/agregar}">Agregar</a>
+
+<p th:text="${message}"></p>
+<p th:text="${greeting}"></p>
+<br>
+<table>
+    <tr>
+        <th>id:</th>
+        <th>Nombre:</th>
+        <th>Price:</th>
+    </tr>
+    <tr th:each="product : ${product}">
+        <td th:text="${product.idproduct}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
