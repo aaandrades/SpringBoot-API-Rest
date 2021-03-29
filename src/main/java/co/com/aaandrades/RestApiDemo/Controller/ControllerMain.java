@@ -4,10 +4,8 @@ import co.com.aaandrades.RestApiDemo.Interface.IProductDao;
 import co.com.aaandrades.RestApiDemo.Service.ProductService;
 import co.com.aaandrades.RestApiDemo.model.Product;
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +16,10 @@ import java.util.List;
 @Slf4j
 public class ControllerMain {
 
-    private @Autowired ProductService productService;
-    private @Autowired IProductDao productDao;
+    private @Autowired
+    ProductService productService;
+    private @Autowired
+    IProductDao productDao;
 
     // Enable when use Thymeleaf to use MVC template.
     /*@GetMapping("/hello")
@@ -47,14 +47,41 @@ public class ControllerMain {
         return "index";
     }*/
 
+    // CREATE
+    @PostMapping("/add")
+    public Product newProduct(@RequestBody Product newProduct) {
+        return productService.saveProduct(newProduct);
+    }
+
+    // READ
     @GetMapping("/list")
-    public List<Product> listProducts(){
+    public List<Product> listProducts() {
         log.info("EXECUTE ROUTE List of products");
         return productService.listProducts();
     }
 
-    @PostMapping("/add")
-    Product newProduct(@RequestBody Product newProduct) {
-        return productService.save(newProduct);
+    // UPDATE
+    @PutMapping("/update/{id}")
+    public Product updateProduct(@RequestBody Product newProduct, @PathVariable Long id) {
+        return productService.update(newProduct, id);
     }
+
+    // DELETE
+    @DeleteMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        return productService.delete(id);
+    }
+
+    // SEARCH
+    @GetMapping("/search/{id}")
+    public Product findProduct(@PathVariable Long id) {
+        return productService.findProduct(id);
+    }
+
+    // HandleError
+    @ResponseStatus(value = HttpStatus.CONFLICT)
+    public static class NoSuchElementFoundException extends RuntimeException {
+    }
+
+
 }
