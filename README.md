@@ -7,7 +7,7 @@
 A simple API Rest with SpringBoot use for CRUD operations with the objetive to understand the workflow in SpringBoot applying
 good practices and a clean code to separate logic.
 
-![Architecture](assets/architecture.PNG)
+![Architecture](assets/new_architecture.PNG)
 
 ### :sparkles: Features
 Describe what features you include in the project.
