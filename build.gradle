@@ -24,6 +24,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 	implementation "com.diffplug.spotless:spotless-plugin-gradle:3.23.1"
+	implementation 'junit:junit:4.12'
+	implementation 'junit:junit:4.12'
 
 	runtimeOnly 'mysql:mysql-connector-java'
 	compileOnly 'org.projectlombok:lombok'
