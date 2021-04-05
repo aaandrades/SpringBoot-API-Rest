@@ -1,46 +1,42 @@
 package co.com.aaandrades.RestApiDemo.controller;
 
-import co.com.aaandrades.RestApiDemo.Interface.IProductDao;
-import co.com.aaandrades.RestApiDemo.Service.ProductService;
-import co.com.aaandrades.RestApiDemo.mocks.TestMockUtils;
-import co.com.aaandrades.RestApiDemo.model.Product;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Assert;
+import co.com.aaandrades.RestApiDemo.Controller.ControllerMain;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-@RunWith(MockitoJUnitRunner.class)
-@DataJpaTest
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+//@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class ControllerMainTest {
 
     @Autowired
-    private TestEntityManager entityManager;
+    private MockMvc mockMvc;
 
     @Autowired
-    private IProductDao productDao;
+    private final ControllerMain controllerMain = new ControllerMain();
 
-    @MockBean
-    ProductService productService;
-
-    ObjectMapper mapper = new ObjectMapper();
+    @Before
+    public void beforeTest() {
+        mockMvc = MockMvcBuilders.standaloneSetup(controllerMain).build();
+    }
 
     @Test
-    public void it_should_save_product() {
-        Product product = new Product();
-        product = TestMockUtils.getMockProduct();
-        //entityManager.persistAndFlush(product);
-        Assertions.assertNotNull(product);
-
-
-        /*
-        testEntityManager.persistAndFlush(product);
-        Assertions.assertNotNull(product.getIdproduct());*/
+    public void shouldReturnHttpCode200OnGet() throws Exception {
+        mockMvc.perform(get("/list")).andExpect(status().isOk());
     }
 
 }

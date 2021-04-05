@@ -18,6 +18,7 @@ public class ControllerMain {
 
     private @Autowired
     ProductService productService;
+
     private @Autowired
     IProductDao productDao;
 
@@ -82,6 +83,4 @@ public class ControllerMain {
     @ResponseStatus(value = HttpStatus.CONFLICT)
     public static class NoSuchElementFoundException extends RuntimeException {
     }
-
-
 }
