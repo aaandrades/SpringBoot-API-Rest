@@ -1,6 +1,8 @@
 package co.com.aaandrades.RestApiDemo.model;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -15,7 +17,6 @@ public class Product  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idproduct;
-
     private String name;
     private String price;
 }
