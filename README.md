@@ -1,4 +1,4 @@
-## :rocket: SpringBoot API Rest
+## :rocket: API Rest with SpringBoot and Mysql 
 
 ![aaandrades](https://img.shields.io/badge/-Backend-blue)
 ![Build](https://img.shields.io/badge/-Working-brightgreen)
