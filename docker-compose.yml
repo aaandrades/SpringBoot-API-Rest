@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  # MySql Database
+  products-mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=products
+      - MYSQL_PASSWORD=root
+    ports:
+      - 3307:3306
+    volumes:
+      - ./database/products.sql:/docker-entrypoint-initdb.d/0_init.sql
+
+    # Docker App
+  spring-boot-app:
+    image: spring-boot-app
+    depends_on:
+      - products-mysql
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://products-mysql:3306/products?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
